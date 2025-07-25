@@ -45,12 +45,12 @@ do
         shift 1
         ;;
         -h | help)
-        usage_new_site
+        usage_local
         exit 0
         ;;
         *)
         echoerror "Unknown argument: $1" false
-        usage_new_site
+        usage_local
         exit 0
         ;;
     esac
@@ -108,7 +108,7 @@ fi
 # Run dev
 if [[ "${LOCAL_DEV,,}" == "true" ]]; then
     echo "Running the application in development mode..."
-    docker run --rm -it -v "$(pwd)/src":/app "${LOCAL_CONTAINER_NAME}" python3 /app/main.py
+    docker run --rm -it -v "$(pwd)/src":/usr/src/app "${LOCAL_CONTAINER_NAME}" python3 /usr/src/app/main.py
 fi
 
 # Build docker image
